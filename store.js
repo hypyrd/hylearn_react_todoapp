@@ -14,11 +14,13 @@ var findItemById = function(id) {
   })[0]
 },
 
+/*
 var deleteItemById = function(id) {
   return items.filter(function(item) {
     return item.id === id
   })[0]
 },
+*/
 
 /*
 removeItem = function (key) {

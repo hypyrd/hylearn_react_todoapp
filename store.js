@@ -61,9 +61,8 @@ ListStore = {
         url: server_uri + "/items/" + itemId
     })
     deleteRequest.done(function(itemData) {
-        delete item
+        delete item;
         notifyComponents()
     })
-    k
   }
 }

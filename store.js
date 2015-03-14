@@ -53,5 +53,17 @@ ListStore = {
         item.completed = itemData.completed
         notifyComponents()
     })
+  },
+  removeItem: function(itemId) {
+    var item = findItemById(itemId)
+    var deleteRequest = $.ajax({
+        type: 'DELETE',
+        url: server_uri + "/items/" + itemId
+    })
+    deleteRequest.done(function(itemData) {
+        delete item
+        notifyComponents()
+    })
+    k
   }
 }

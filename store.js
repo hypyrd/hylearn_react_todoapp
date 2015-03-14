@@ -1,4 +1,5 @@
 var items = []
+var items_idx = []
 
 var server_uri = 'https://listalous.herokuapp.com/lists/CHEWIE-FURRY/'
 //var server_uri = 'https://listalous.herokuapp.com/lists/rinataur/'
@@ -12,6 +13,23 @@ var findItemById = function(id) {
     return item.id === id
   })[0]
 },
+
+var deleteItemById = function(id) {
+  return items.filter(function(item) {
+    return item.id === id
+  })[0]
+},
+
+/*
+removeItem = function (key) {
+	if (!this.hasOwnProperty(key))
+		return
+	if (isNaN(parseInt(key)) || !(this instanceof Array))
+		delete this[key]
+	else
+		this.splice(key, 1)
+}
+*/
 
 ListStore = {
 
@@ -37,6 +55,8 @@ ListStore = {
     })
     creationRequest.done(function(itemDataFromServer) {
         items.push(itemDataFromServer)
+        items_idx[itemData.id] = items.length()
+        console.log(items.length())
         notifyComponents()
     })
   },
@@ -61,7 +81,9 @@ ListStore = {
         url: server_uri + "/items/" + itemId
     })
     deleteRequest.done(function(itemData) {
-        delete item;
+        idx_2b_del = items_idx[itemData.id]
+        if (isNaN(parseInt(idx_2b_del)) )
+          delete items[idx_2b_del]
         notifyComponents()
     })
   }
